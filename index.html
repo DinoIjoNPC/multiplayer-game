@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplayer Game Lobby</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-gamepad"></i> Multiplayer Game Online</h1>
+            <p>Buat atau join room untuk bermain dengan temanmu!</p>
+        </header>
+        
+        <main>
+            <div class="card">
+                <h2><i class="fas fa-plus-circle"></i> Buat Room Baru</h2>
+                <div class="form-group">
+                    <label for="playerName">Nama Pemain:</label>
+                    <input type="text" id="playerName" placeholder="Masukkan nama kamu" maxlength="20">
+                </div>
+                <button id="createRoomBtn" class="btn-primary">
+                    <i class="fas fa-plus"></i> Buat Room
+                </button>
+                <div id="roomCreated" class="hidden">
+                    <h3>Room berhasil dibuat!</h3>
+                    <div class="room-info">
+                        <p>ID Room: <span id="roomIdDisplay" class="room-id"></span></p>
+                        <p>Bagikan ID ini ke temanmu untuk bergabung</p>
+                        <button id="copyRoomId" class="btn-secondary">
+                            <i class="far fa-copy"></i> Salin ID Room
+                        </button>
+                        <button id="joinRoomBtn" class="btn-success">
+                            <i class="fas fa-sign-in-alt"></i> Masuk ke Room
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2><i class="fas fa-sign-in-alt"></i> Join Room</h2>
+                <div class="form-group">
+                    <label for="joinPlayerName">Nama Pemain:</label>
+                    <input type="text" id="joinPlayerName" placeholder="Masukkan nama kamu" maxlength="20">
+                </div>
+                <div class="form-group">
+                    <label for="roomIdInput">ID Room (6 digit):</label>
+                    <input type="text" id="roomIdInput" placeholder="Masukkan ID Room" maxlength="6">
+                </div>
+                <button id="joinExistingRoomBtn" class="btn-primary">
+                    <i class="fas fa-sign-in-alt"></i> Join Room
+                </button>
+                <div id="joinError" class="error hidden"></div>
+            </div>
+            
+            <div class="card">
+                <h2><i class="fas fa-info-circle"></i> Cara Bermain</h2>
+                <ol class="instructions">
+                    <li>Masukkan nama pemain</li>
+                    <li>Buat room baru atau join dengan ID room</li>
+                    <li>Bagikan ID room ke temanmu</li>
+                    <li>Tunggu pemain lain bergabung</li>
+                    <li>Semua pemain harus klik "Ready"</li>
+                    <li>Game akan dimulai otomatis</li>
+                </ol>
+                <div class="game-types">
+                    <h3>Game yang Tersedia:</h3>
+                    <div class="game-card">
+                        <h4><i class="fas fa-times"></i> Tic-Tac-Toe</h4>
+                        <p>Game klasik 3x3 untuk 2 pemain</p>
+                    </div>
+                    <div class="game-card">
+                        <h4><i class="fas fa-dice"></i> Game Dadu</h4>
+                        <p>Lempar dadu, dapatkan poin tertinggi</p>
+                    </div>
+                    <div class="game-card">
+                        <h4><i class="fas fa-question"></i> Trivia</h4>
+                        <p>Jawab pertanyaan secepat mungkin</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>Multiplayer Game &copy; 2023 | Dibuat dengan <i class="fas fa-heart"></i> dan Socket.IO</p>
+        </footer>
+    </div>
+    
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/lobby.js"></script>
+</body>
+              </html>
