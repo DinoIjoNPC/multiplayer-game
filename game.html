@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Room - Multiplayer Game</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="game-header">
+            <h1><i class="fas fa-gamepad"></i> Room: <span id="roomIdHeader"></span></h1>
+            <div class="player-count">
+                <i class="fas fa-users"></i> <span id="playerCount">1</span>/4
+            </div>
+            <button id="leaveRoomBtn" class="btn-danger">
+                <i class="fas fa-sign-out-alt"></i> Keluar
+            </button>
+        </div>
+        
+        <div class="game-layout">
+            <!-- Sidebar - Players & Chat -->
+            <div class="sidebar">
+                <div class="players-panel">
+                    <h3><i class="fas fa-users"></i> Pemain</h3>
+                    <div id="playersList"></div>
+                    <div id="readyStatus"></div>
+                </div>
+                
+                <div class="chat-panel">
+                    <h3><i class="fas fa-comments"></i> Chat</h3>
+                    <div id="chatMessages"></div>
+                    <div class="chat-input">
+                        <input type="text" id="chatInput" placeholder="Ketik pesan...">
+                        <button id="sendChatBtn"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Main Game Area -->
+            <div class="main-game-area">
+                <div id="lobbyView">
+                    <h2>Menunggu Pemain...</h2>
+                    <p>ID Room: <span id="roomIdDisplay" class="room-id"></span></p>
+                    <p>Bagikan ID ini: <span id="inviteLink"></span></p>
+                    
+                    <div class="waiting-players">
+                        <h3>Pemain di Room:</h3>
+                        <div id="waitingPlayersList"></div>
+                    </div>
+                    
+                    <div class="game-start-section">
+                        <p>Semua pemain harus klik "Ready" untuk memulai game</p>
+                        <button id="readyBtn" class="btn-success">
+                            <i class="fas fa-check"></i> Ready
+                        </button>
+                        <div id="countdown" class="hidden">
+                            <h3>Game dimulai dalam: <span id="countdownNumber">5</span></h3>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="gameView" class="hidden">
+                    <div class="game-info">
+                        <div class="turn-indicator" id="turnIndicator">
+                            Giliran: <span id="currentPlayer"></span>
+                        </div>
+                        <div class="score-board">
+                            <h3><i class="fas fa-trophy"></i> Score</h3>
+                            <div id="scoreDisplay"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Game Board (Tic-Tac-Toe Example) -->
+                    <div class="game-board" id="ticTacToeBoard">
+                        <h3>Tic-Tac-Toe</h3>
+                        <div class="board-grid">
+                            <div class="cell" data-index="0"></div>
+                            <div class="cell" data-index="1"></div>
+                            <div class="cell" data-index="2"></div>
+                            <div class="cell" data-index="3"></div>
+                            <div class="cell" data-index="4"></div>
+                            <div class="cell" data-index="5"></div>
+                            <div class="cell" data-index="6"></div>
+                            <div class="cell" data-index="7"></div>
+                            <div class="cell" data-index="8"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="game-controls">
+                        <button id="restartGameBtn" class="btn-secondary">
+                            <i class="fas fa-redo"></i> Main Lagi
+                        </button>
+                        <button id="changeGameBtn" class="btn-secondary">
+                            <i class="fas fa-exchange-alt"></i> Ganti Game
+                        </button>
+                    </div>
+                </div>
+                
+                <div id="gameEndView" class="hidden">
+                    <div class="end-game-modal">
+                        <h2 id="gameResult"></h2>
+                        <div id="finalScores"></div>
+                        <div class="end-game-buttons">
+                            <button id="playAgainBtn" class="btn-success">
+                                <i class="fas fa-redo"></i> Main Lagi
+                            </button>
+                            <button id="backToLobbyBtn" class="btn-secondary">
+                                <i class="fas fa-home"></i> Kembali ke Lobby
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/game.js"></script>
+</body>
+  </html>
